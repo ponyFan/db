@@ -1,0 +1,31 @@
+<table>
+    <tbody id="result">
+        <h1>ssss</h1>
+    </tbody>
+
+</table>
+<script src="/js/jquery.js"></script>
+<script>
+    $(document).ready(function () {
+
+    })
+
+    var url = "ws://192.168.1.102:8080/websocket";
+    var socket = null;
+    if ('WebSocket' in window){
+        socket = new WebSocket(url);
+    }else {
+        window.alert("浏览器不支持WebSocket")
+    }
+    socket.onopen = function () {
+        console.log("socket open")
+    }
+
+    socket.onmessage = function (msg) {
+        console.log("get msg" + msg.data)
+    }
+
+    window.onbeforeunload = function () {
+        socket.close()
+    }
+</script>
