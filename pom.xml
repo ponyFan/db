@@ -152,16 +152,9 @@
         </dependency>
 
         <dependency>
-            <groupId>com.oracle</groupId>
+            <groupId>com.oracle.database.jdbc</groupId>
             <artifactId>ojdbc6</artifactId>
-            <version>11.2.0.1.0</version>
-        </dependency>
-
-        <!--sqoop-->
-        <dependency>
-            <groupId>org.apache.sqoop</groupId>
-            <artifactId>sqoop</artifactId>
-            <version>1.4.7</version>
+            <version>11.2.0.4</version>
         </dependency>
 
         <dependency>
@@ -195,12 +188,6 @@
             <artifactId>hadoop-mapreduce-client-jobclient</artifactId>
             <version>${hadoop.version}</version>
             <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>sqoop</groupId>
-            <artifactId>apache-sqoop</artifactId>
-            <version>1.4.6</version>
         </dependency>
 
         <dependency>

@@ -99,7 +99,7 @@ public class TestController {
     @ApiOperation("测试插入数据，测试校验非空注解，方法计时注解")
     @Check
     @Timing
-    public BaseModel insert(StudentVO student){
+    public BaseModel insert(@Valid StudentVO student){
         studentService.insert(student);
         return BaseModel.simpleSuccessModel();
     }
