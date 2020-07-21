@@ -10,7 +10,7 @@ import com.ga.common.RestfulTemplate;
 import com.ga.common.WebSocketServer;
 import com.ga.dao.TicketRowkeyIndexDao;
 import com.ga.entity.dto.TicketRowkeyIndexDO;
-import com.ga.entity.model.BaseModel;
+import com.ga.entity.model.BaseResponse;
 import com.ga.entity.vo.PersonIdTicketVO;
 import com.ga.entity.vo.StudentVO;
 import com.ga.service.StudentService;
@@ -99,9 +99,9 @@ public class TestController {
     @ApiOperation("测试插入数据，测试校验非空注解，方法计时注解")
     @Check
     @Timing
-    public BaseModel insert(@Valid StudentVO student){
+    public BaseResponse insert(@Valid StudentVO student){
         studentService.insert(student);
-        return BaseModel.simpleSuccessModel();
+        return BaseResponse.simpleSuccessModel();
     }
 
     @PostMapping("/testTransaction")

@@ -9,24 +9,30 @@ import java.io.Serializable;
  * @date 2019/11/28 10:36
  * @description
  */
-public class BaseModel<T> implements Serializable {
+public class BaseResponse<T> implements Serializable {
 
     private int code;
     private String message;
     private T data;
 
-    public BaseModel(int code, String message){
+    public BaseResponse(int code, String message){
         this.code = code;
         this.message = message;
     }
 
-    public BaseModel(int code, String message, T data){
+    public BaseResponse(int code, T data){
+        this.code = code;
+        this.data = data;
+    }
+
+
+    public BaseResponse(int code, String message, T data){
         this(code, message);
         this.data = data;
     }
 
-    public static BaseModel simpleSuccessModel(){
-        return new BaseModel(200, "success");
+    public static BaseResponse simpleSuccessModel(){
+        return new BaseResponse(200, "success");
     }
 
     public int getCode() {

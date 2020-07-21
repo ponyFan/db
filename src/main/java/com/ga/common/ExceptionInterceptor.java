@@ -1,6 +1,6 @@
 package com.ga.common;
 
-import com.ga.entity.model.BaseModel;
+import com.ga.entity.model.BaseResponse;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class ExceptionInterceptor {
 
     @ExceptionHandler(ServiceException.class)
-    public BaseModel myException(ServiceException e){
-        return new BaseModel(e.getCode(), e.getMsg());
+    public BaseResponse myException(ServiceException e){
+        return new BaseResponse(e.getCode(), e.getMsg());
     }
 
     /*@ExceptionHandler(Exception.class)
@@ -34,12 +34,12 @@ public class ExceptionInterceptor {
      * @return
      */
     @ExceptionHandler(BindException.class)
-    public BaseModel validatorException(BindException e){
+    public BaseResponse validatorException(BindException e){
         BindingResult bindingResult = e.getBindingResult();
         if (bindingResult.hasErrors()){
             FieldError fieldError = bindingResult.getFieldError();
-            return new BaseModel(201, fieldError.getDefaultMessage());
+            return new BaseResponse(201, fieldError.getDefaultMessage());
         }
-        return new BaseModel(201, e.getCause().getMessage());
+        return new BaseResponse(201, e.getCause().getMessage());
     }
 }

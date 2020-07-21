@@ -1,13 +1,6 @@
 package com.ga.common.sqoop;
 
 import com.ga.common.sqoop.entity.Mysql2HdfsModel;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.hadoop.conf.Configuration;
-import org.apache.sqoop.Sqoop;
-import org.apache.sqoop.tool.SqoopTool;
-import org.apache.sqoop.util.OptionsFileUtil;
-
-import java.util.Arrays;
 
 /**
  * @author zelei.fan
@@ -23,7 +16,7 @@ public class SqoopUtils {
      * @throws Exception
      */
     public static void sql2hdfs(Mysql2HdfsModel model, String url) throws Exception {
-        String[] args = new String[] {
+        /*String[] args = new String[] {
                 "--connect", url,
                 "--username", model.getUser(),
                 "--password", model.getPassword(),
@@ -32,7 +25,7 @@ public class SqoopUtils {
                 "--target-dir", model.getTargetDir(),
         };
         System.out.println("************cmd is : " + Arrays.toString(args));
-        runSqoop(args, model.getDefaultFS());
+        runSqoop(args, model.getDefaultFS());*/
     }
 
     /**
@@ -42,7 +35,7 @@ public class SqoopUtils {
      * @throws Exception
      */
     public static void runSqoop(String[] args, String hdfs) throws Exception {
-        String[] expandArguments = OptionsFileUtil.expandArguments(args);
+        /*String[] expandArguments = OptionsFileUtil.expandArguments(args);
         SqoopTool tool = SqoopTool.getTool("import");
         Configuration conf = new Configuration();
         if (StringUtils.isNotBlank(hdfs)){
@@ -50,6 +43,6 @@ public class SqoopUtils {
         }
         Configuration loadPlugins = SqoopTool.loadPlugins(conf);
         Sqoop sqoop = new Sqoop((com.cloudera.sqoop.tool.SqoopTool) tool, loadPlugins);
-        Sqoop.runSqoop(sqoop, expandArguments);
+        Sqoop.runSqoop(sqoop, expandArguments);*/
     }
 }

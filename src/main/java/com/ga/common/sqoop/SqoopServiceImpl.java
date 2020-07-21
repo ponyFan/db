@@ -1,14 +1,7 @@
 package com.ga.common.sqoop;
 
 import com.ga.common.sqoop.entity.Mysql2HdfsModel;
-import org.apache.hadoop.conf.Configuration;
-import org.apache.sqoop.Sqoop;
-import org.apache.sqoop.tool.SqoopTool;
-import org.apache.sqoop.util.OptionsFileUtil;
 import org.springframework.stereotype.Service;
-
-import java.sql.Timestamp;
-import java.util.Date;
 
 /**
  * @author zelei.fan
@@ -17,8 +10,32 @@ import java.util.Date;
  */
 @Service
 public class SqoopServiceImpl implements SqoopService {
+    @Override
+    public void mysql2hdfs(Mysql2HdfsModel model) throws Exception {
+
+    }
 
     @Override
+    public void oracle2hdfs(Mysql2HdfsModel model) throws Exception {
+
+    }
+
+    @Override
+    public void mysql2hdfsIncremental(Mysql2HdfsModel model) throws Exception {
+
+    }
+
+    @Override
+    public SqoopBean mysql2hdfs(String jdbc, String driver, String username, String password, String table, int m, String targetdir, String putlocation) throws Exception {
+        return null;
+    }
+
+    @Override
+    public SqoopBean mysql2Hbase(String jdbc, String driver, String username, String password, String mysqlTable, String hbaseTableName, String columnFamily, String rowkey, int m) throws Exception {
+        return null;
+    }
+
+    /*@Override
     public void mysql2hdfs(Mysql2HdfsModel model) throws Exception {
         SqoopUtils.sql2hdfs(model, model.getUrl());
     }
@@ -81,5 +98,5 @@ public class SqoopServiceImpl implements SqoopService {
         sqoopBean.setI(Sqoop.runSqoop(sqoop,expandArguments));
         sqoopBean.setTs(new Timestamp(new Date().getTime()));
         return sqoopBean;
-    }
+    }*/
 }
