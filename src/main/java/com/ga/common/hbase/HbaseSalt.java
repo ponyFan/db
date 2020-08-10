@@ -1,4 +1,4 @@
-package com.ga.common;
+package com.ga.common.hbase;
 
 import com.github.javafaker.Faker;
 import com.google.common.collect.Lists;

@@ -1,5 +1,7 @@
-package com.ga.common;
+package com.ga.common.kafka;
 
+import com.ga.common.hbase.HashRowKeyGenerator;
+import com.ga.common.hbase.HbaseTemplate;
 import com.ga.dao.StudentDAO;
 import com.ga.entity.dto.StudentDO;
 import org.apache.commons.lang3.StringUtils;

@@ -1,7 +1,7 @@
 package com.ga.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.ga.common.HbaseTemplate;
+import com.ga.common.hbase.HbaseTemplate;
 import com.ga.entity.model.PageBean;
 import com.ga.entity.vo.StudentVO;
 import com.ga.utils.DateUtil;

@@ -1,4 +1,4 @@
-package com.ga.common;
+package com.ga.common.websocket;
 
 import org.springframework.stereotype.Component;
 

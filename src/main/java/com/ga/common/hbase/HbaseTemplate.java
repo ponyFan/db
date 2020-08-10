@@ -1,4 +1,4 @@
-package com.ga.common;
+package com.ga.common.hbase;
 
 import com.ga.entity.model.PageBean;
 import com.ga.enums.HbaseFilterEnum;
@@ -19,7 +19,6 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

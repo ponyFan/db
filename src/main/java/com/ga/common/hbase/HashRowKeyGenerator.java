@@ -1,4 +1,4 @@
-package com.ga.common;
+package com.ga.common.hbase;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.hadoop.hbase.util.Bytes;
