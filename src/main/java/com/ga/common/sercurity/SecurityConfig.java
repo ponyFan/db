@@ -3,6 +3,7 @@ package com.ga.common.sercurity;
 
 import com.ga.common.sercurity.filter.JWTAuthenticationFilter;
 import com.ga.common.sercurity.filter.JWTAuthorizationFilter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -24,7 +25,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    /*@Autowired*/
+    @Autowired
     private UserDetailsService userDetailsService;
 
     @Bean

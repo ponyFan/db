@@ -1,5 +1,6 @@
 package com.ga.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.ga.common.HbaseTemplate;
 import com.ga.entity.model.PageBean;
 import com.ga.entity.vo.StudentVO;
@@ -18,12 +19,9 @@ import org.apache.hadoop.hbase.util.Bytes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
-import sun.security.provider.MD5;
 
 import java.io.IOException;
 import java.util.*;
-
-import static org.apache.commons.lang3.RandomUtils.nextInt;
 
 @RestController
 @RequestMapping("/hbase")
@@ -73,6 +71,10 @@ public class HbaseController {
     @PostMapping("/insert")
     @ApiOperation(value = "insert data to hbase")
     public void insertTable(@RequestParam(value = "tableName") String tableName, @RequestBody StudentVO stu){
+        JSONObject object = new JSONObject();
+        object.forEach((s, o) -> {
+
+        });
         while (true){
             long l = System.currentTimeMillis();
             String reverse = new Random().nextInt(9) + "_" + l + "_" + DigestUtils.md5DigestAsHex(Bytes.toBytes(UUID.randomUUID().getLeastSignificantBits()));

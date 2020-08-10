@@ -30,6 +30,6 @@ public class FileConfig extends WebMvcConfigurationSupport {
                 .addResourceLocations("classpath:/static/")
                 .addResourceLocations("classpath:/public/")
                 .addResourceLocations("classpath:/META-INF/resources/");
-        /*registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");*/
+        registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
     }
 }

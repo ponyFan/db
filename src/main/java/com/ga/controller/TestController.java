@@ -25,8 +25,9 @@ import org.apache.hadoop.hbase.client.Connection;
 import org.apache.hadoop.hbase.client.Put;
 import org.apache.hadoop.hbase.client.Table;
 import org.apache.hadoop.hbase.util.Bytes;
+import org.apache.kafka.clients.admin.AdminClient;
+import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,10 +39,7 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Random;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -64,11 +62,18 @@ public class TestController {
     @Autowired
     private HbaseTemplate hbaseTemplate;
 
-    @Value("${device.code}")
-    private String deviceCode;
+    @Autowired // adminClien需要自己生成配置bean
+    private AdminClient adminClient;
 
-    @Value("${device.street}")
-    private String deviceStreet;
+    @PostMapping("/topic")
+    @ApiOperation("自定义topic")
+    public void testCreateTopic() throws InterruptedException {
+        // 这种是手动创建 //10个分区，一个副本
+        // 分区多的好处是能快速的处理并发量，但是也要根据机器的配置
+        NewTopic topic = new NewTopic("test113", 10, (short) 3);
+        adminClient.createTopics(Arrays.asList(topic));
+        Thread.sleep(1000);
+    }
 
     @PostMapping("/test")
     @ApiOperation(value = "参数为对象", notes = "无参")
@@ -280,7 +285,6 @@ public class TestController {
                         long l = System.currentTimeMillis();
                         String rowKey = assembleRowKey(vo, l);
                         insertHbase(rowKey, vo, data, flag, street, sn, station, String.valueOf(l), puts);
-                        insertIndex(l, rowKey, sn, street, vo.getIdCardNum(), list);
                     }
                 }
             });
@@ -295,22 +299,6 @@ public class TestController {
     private String assembleRowKey(PersonIdTicketVO ticketVO, long currentTime){
         String idCardNum = ticketVO.getIdCardNum();
         return currentTime + "-" + idCardNum;
-    }
-
-    private void insertIndex(long time, String rowkey, String code, String street, String id, List<TicketRowkeyIndexDO> list){
-        TicketRowkeyIndexDO aDo = new TicketRowkeyIndexDO();
-        JSONObject codeMap = JSONObject.parseObject(deviceCode);
-        JSONObject streetMap = JSONObject.parseObject(deviceStreet);
-        aDo.setInsertTime(time);
-        aDo.setCode(codeMap.getInteger(code));
-        aDo.setStreet(streetMap.getInteger(street));
-        aDo.setIdCard(id);
-        list.add(aDo);
-        if (list.size() % 500 == 0){
-            System.out.println("insert mysql..." + DateUtil.getCurrentDateString(DateUtil.DATE_TIME));
-            ticketRowkeyIndexDao.insertBatch(list);
-            list.clear();
-        }
     }
 
     private void insertHbase(String rowKey, PersonIdTicketVO ticketVO, String data, String flag, String street, String code, String station, String checkTime, List<Put> list){
