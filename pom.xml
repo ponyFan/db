@@ -19,7 +19,7 @@
         <swagger.version>2.7.0</swagger.version>
         <hbase.version>2.2.2</hbase.version>
         <spark.version>2.4.0</spark.version>
-        <hadoop.version>3.0.0</hadoop.version>
+        <hadoop.version>3.1.4</hadoop.version>
     </properties>
 
     <dependencies>
