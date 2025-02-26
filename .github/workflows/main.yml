@@ -1,0 +1,21 @@
+name: Manual Dispatch
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to run the workflow from'
+        required: true
+        default: 'main'
+        type: fixed  # This is a pseudo-attribute for illustration purposes; not supported by GitHub Actions
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: main  # Ensuring that the main branch is checked out
+      - name: Deploy application
+        run: echo "test workflow"
