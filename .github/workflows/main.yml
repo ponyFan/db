@@ -16,6 +16,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          ref: main  # Ensuring that the main branch is checked out
+          ref: master  # Ensuring that the main branch is checked out
       - name: Deploy application
         run: echo "test workflow"
